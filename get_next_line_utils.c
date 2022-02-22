@@ -12,6 +12,7 @@
 
 #include "get_next_line.h"
 
+// Returns a pointer to the located character or NULL if not
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	count;
@@ -28,6 +29,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+// Allocs and returns a new string which is the concat of ’s1’ and ’s2’
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
@@ -56,6 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+// Returns the number of characters that precede the terminating NUL character
 size_t	ft_strlen(const char *s)
 {
 	size_t	count;
@@ -66,6 +69,7 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
+// Allocs and returns a substring from 's’; begins at ’start’ and has max ’len’
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;

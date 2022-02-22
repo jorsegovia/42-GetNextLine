@@ -12,10 +12,10 @@
 
 #include "get_next_line.h"
 
-static void ft_read (int fd, char *buffer, char **str)
+static void	ft_read(int fd, char *buffer, char **str)
 {
 	int		count;
-	char	*tmp;
+	char	*temp;
 
 	if (!*str || !ft_strchr(*str, '\n'))
 	{
@@ -27,7 +27,7 @@ static void ft_read (int fd, char *buffer, char **str)
 				*str = ft_substr(buffer, 0, count);
 			else
 			{
-				tmp = *str;
+				temp = *str;
 				*str = ft_strjoin(*str, buffer);
 				free(tmp);
 			}
@@ -39,15 +39,15 @@ static void ft_read (int fd, char *buffer, char **str)
 	free(buffer);
 }
 
-static char ft_process(char **str)
+static char	ft_process(char **str)
 {
 	char	*res;
 	char	*temp;
 	size_t	count;
 	size_t	counter;
 
-	if(!str)
-		return(0);
+	if (!str)
+		return (0);
 	if (!ft_strchr(*str, '\n'))
 	{
 		res = ft_substr(*str, 0, ft_strlen(*str));
@@ -69,10 +69,10 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		buffer;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));	//Create and check memory buffer
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	if (BUFFER_SIZE < 1 || fd == -1 || read(fd, buffer, 0) == -1)	//Check if buffer doesn't have viable size, fd isn't valid or cannot load read files
+	if (BUFFER_SIZE < 1 || fd == -1 || read(fd, buffer, 0) == -1)
 	{
 		free(buffer);
 		return (0);
@@ -80,3 +80,24 @@ char	*get_next_line(int fd)
 	ft_read(fd, &buffer, &str);
 	return (ft_process(&str));
 }
+
+/*
+20	: Check if str is valid or doesn't have end char
+22	: Get the amount of characters to populate the str with from reading fd
+26	: If the str doesn't exist; populate it with the contents of the buffer
+28	: If the str exists, add the buffer ot it
+34	: If the buffer has end char exit the loop
+36	: Reset the loop with another count of the characters in fd
+
+51	: Check if line has end char
+54	: Populate res with the content of str; then free str and return res
+58	: Get total str lenght 
+59	: Get the length from the first end char found till the end
+60	: Make a substr from str, starting at 0, untill the first end char
+61	: Create a reference to str
+62	: Cut from the str from start till the end char found
+
+72	: Create and check memory buffer
+75	: Check if buffer doesn't have viable size, 
+	  if fd isn't valid or cannot read files
+*/
