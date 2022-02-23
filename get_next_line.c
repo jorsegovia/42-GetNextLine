@@ -39,7 +39,7 @@ static void	ft_read(int fd, char *buffer, char **str)
 	free(buffer);
 }
 
-static char	ft_process(char **str)
+static char	ft_processing(char **str)
 {
 	char	*res;
 	char	*temp;
@@ -78,7 +78,7 @@ char	*get_next_line(int fd)
 		return (0);
 	}
 	ft_read(fd, &buffer, &str);
-	return (ft_process(&str));
+	return (ft_processing(&str));
 }
 
 /*
