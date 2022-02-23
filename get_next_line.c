@@ -29,7 +29,7 @@ static void	ft_read(int fd, char *buffer, char **str)
 			{
 				temp = *str;
 				*str = ft_strjoin(*str, buffer);
-				free(tmp);
+				free(temp);
 			}
 			if (ft_strchr(buffer, '\n'))
 				break ;
@@ -39,7 +39,7 @@ static void	ft_read(int fd, char *buffer, char **str)
 	free(buffer);
 }
 
-static char	ft_processing(char **str)
+static char	*ft_processing(char **str)
 {
 	char	*res;
 	char	*temp;
@@ -67,7 +67,7 @@ static char	ft_processing(char **str)
 char	*get_next_line(int fd)
 {
 	static char	*str;
-	char		buffer;
+	char		*buffer;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 		free(buffer);
 		return (0);
 	}
-	ft_read(fd, &buffer, &str);
+	ft_read(fd, buffer, &str);
 	return (ft_processing(&str));
 }
 
