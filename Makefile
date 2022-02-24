@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= 
+SRCS	= get_next_line.c get_next_line_utils.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -18,7 +18,7 @@ CC		=	gcc
 RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=n
 
-NAME	=	libft.a
+NAME	=	get_next_line.a
 
 $(NAME):	$(OBJS)
 			ar	rcs	$(NAME)	$(OBJS)
