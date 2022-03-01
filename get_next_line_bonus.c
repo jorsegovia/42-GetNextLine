@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsegovia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 10:15:13 by jsegovia          #+#    #+#             */
-/*   Updated: 2022/02/21 10:15:17 by jsegovia         ###   ########.fr       */
+/*   Created: 2022/03/01 12:53:28 by jsegovia          #+#    #+#             */
+/*   Updated: 2022/03/01 12:53:40 by jsegovia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static void	ft_read(int fd, char *buffer, char **str)
 	int		count;
 	char	*temp;
 
-	if (!*str[fd] || !ft_strchr(*str[fd], '\n'))
+	if (!str[fd] || !ft_strchr(str[fd], '\n'))
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
 		while (count > 0)
 		{
 			buffer[count] = 0;
-			if (!*str[fd])
-				*str[fd] = ft_substr(buffer, 0, count);
+			if (!str[fd])
+				str[fd] = ft_substr(buffer, 0, count);
 			else
 			{
-				temp = *str[fd];
-				*str[fd] = ft_strjoin(*str[fd], buffer);
+				temp = str[fd];
+				str[fd] = ft_strjoin(str[fd], buffer);
 				free(temp);
 			}
 			if (ft_strchr(buffer, '\n'))
@@ -48,20 +48,20 @@ static char	*ft_processing(int fd, char **str)
 	char	*res;
 	char	*temp;
 
-	if (!*str[fd])
+	if (!str[fd])
 		return (0);
-	if (!ft_strchr(*str[fd], '\n'))
+	if (!ft_strchr(str[fd], '\n'))
 	{
-		res = ft_substr(*str[fd], 0, ft_strlen(*str[fd]));
-		free(*str[fd]);
-		*str[fd] = 0;
+		res = ft_substr(str[fd], 0, ft_strlen(str[fd]));
+		free(str[fd]);
+		str[fd] = 0;
 		return (res);
 	}
-	count = ft_strlen(*str[fd]);
-	counter = ft_strlen(ft_strchr(*str[fd], '\n'));
-	res = ft_substr(*str[fd], 0, count - counter + 1);
-	temp = *str[fd];
-	*str[fd] = ft_substr(ft_strchr(*str[fd], '\n'), 1, counter - 1);
+	count = ft_strlen(str[fd]);
+	counter = ft_strlen(ft_strchr(str[fd], '\n'));
+	res = ft_substr(str[fd], 0, count - counter + 1);
+	temp = str[fd];
+	str[fd] = ft_substr(ft_strchr(str[fd], '\n'), 1, counter - 1);
 	free(temp);
 	return (res);
 }
@@ -79,8 +79,8 @@ char	*get_next_line(int fd)
 		free(buffer);
 		return (0);
 	}
-	ft_read(fd, buffer, &str);
-	return (ft_processing(fd, &str));
+	ft_read(fd, buffer, str);
+	return (ft_processing(fd, str));
 }
 
 /*
