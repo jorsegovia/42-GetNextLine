@@ -43,12 +43,12 @@ static void	ft_read(int fd, char *buffer, char **str)
 
 static char	*ft_processing(char **str)
 {
-	char	*res;
-	char	*temp;
 	size_t	count;
 	size_t	counter;
+	char	*res;
+	char	*temp;
 
-	if (!str)
+	if (!*str)
 		return (0);
 	if (!ft_strchr(*str, '\n'))
 	{
