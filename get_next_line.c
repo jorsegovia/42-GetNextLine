@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+//#include <stdio.h>
+//#include <fcntl.h>
 
 static void	ft_read(int fd, char *buffer, char **str)
 {
@@ -80,6 +82,20 @@ char	*get_next_line(int fd)
 	ft_read(fd, buffer, &str);
 	return (ft_processing(&str));
 }
+
+/*
+int	main(void)
+{
+	int		fd;
+	char	*res;
+
+	fd = open("files/41_no_nl", O_RDWR);
+	res = get_next_line(fd);
+	if (!res)
+		return (printf("\nTest Failed"));
+	else
+		return (printf("\nTest Success: %s", res));
+}*/
 
 /*
 20	: Check if str is valid or doesn't have end char
