@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // Returns a pointer to the located character or NULL if not
 char	*ft_strchr(const char *s, int c)
