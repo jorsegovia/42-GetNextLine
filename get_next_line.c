@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//#include <stdio.h>
-//#include <fcntl.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
 
 static void	ft_read(int fd, char *buffer, char **str)
 {
@@ -89,12 +90,19 @@ int	main(void)
 	int		fd;
 	char	*res;
 
-	fd = open("tests/41_no_nl", O_RDWR);
-	res = get_next_line(fd);
-	if (!res)
-		return (printf("\nTest Failed"));
-	else
-		return (printf("\nTest Success: %s", res));
+	char file[] = "tests/multiple_line_with_nl";
+
+	fd = open(file, O_RDWR);
+	printf("\n\n\t TESTING: %s\n", file);
+	while (1)
+	{
+		res = get_next_line(fd);
+		if (!res)
+			return(printf("\nTest Failed"));
+		else
+			printf("\nTest Success: %s", res);
+	}
+	return (0);
 }*/
 
 /*
