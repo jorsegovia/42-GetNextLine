@@ -72,7 +72,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*buffer;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 2));
 	if (!buffer)
 		return (0);
 	if (BUFFER_SIZE < 1 || fd == -1 || read(fd, buffer, 0) == -1)
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	return (ft_processing(&str));
 }
 
-/*
+
 int	main(void)
 {
 	int		fd;
@@ -103,7 +103,7 @@ int	main(void)
 			printf("\nTest Success: %s", res);
 	}
 	return (0);
-}*/
+}
 
 /*
 20	: Check if str is valid or doesn't have end char
