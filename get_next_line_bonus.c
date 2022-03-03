@@ -89,7 +89,7 @@ int	main(void)
 	int		fd;
 	char	*res;
 
-	fd = open("files/41_no_nl", O_RDWR);
+	fd = open("tests/41_no_nl", O_RDWR);
 	res = get_next_line(fd);
 	if (!res)
 		return (printf("\nTest Failed"));
